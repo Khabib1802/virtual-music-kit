@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "sass": "sass --watch src/scss/main.scss src/scss/main.css"
+  },
+  "dependencies": {
+    "modern-normalize": "^3.0.1"
+  },
+  "devDependencies": {
+    "sass": "^1.93.2"
+  }
+}
