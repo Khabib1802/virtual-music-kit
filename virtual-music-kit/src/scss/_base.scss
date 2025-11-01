@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 20px;
+  background-color: $color-dark;
+}
+
+button {
+  padding: $spacing-small;
+  border: 2px solid $color-light;
+  border-radius: $bd-radius;
+  background-color: $color-light;
+  color: $color-dark;
+  font-size: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $color-dark;
+      border-color: $color-accent;
+      color: $color-light;
+    }
+  }
+
+  &:active {
+    border-color: darken($color-accent, 20%);
+  }
+}
+
+input {
+  padding: $spacing-small;
+  border: 2px solid $color-dark;
+  border-radius: $bd-radius;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: $color-dark;
+  text-transform: uppercase;
+  background: $color-light;
+  transition: all 0.3s;
+
+  &:focus,
+  &:hover {
+    border-color: $color-accent;
+  }
+}

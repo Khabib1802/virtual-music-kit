@@ -1,0 +1,16 @@
+.controls {
+  display: flex;
+  align-items: center;
+  column-gap: $spacing-middle;
+  padding: $spacing-middle;
+  padding-bottom: 0;
+
+  &__input {
+    color: $color-light;
+    border: 2px solid $color-light;
+    background-color: inherit;
+  }
+
+  &__play {
+  }
+}
