@@ -37,7 +37,7 @@ function createPianoKey(dataKey) {
           { tag: 'input', classes: ['piano__input'] },
           { type: 'text', value: dataKey, maxLength: 1 }
         ),
-        createElement({ tag: 'button', classes: ['piano__edit'] }),
+        createElement({ tag: 'button', classes: ['piano__edit'] }, { title: 'edit' }),
       ]),
     ]
   );
