@@ -75,7 +75,11 @@ function createControls() {
   return controls;
 }
 
-const controls = createControls();
-const piano = createPiano();
+function initApp() {
+  const controls = createControls();
+  const piano = createPiano();
 
-document.body.append(controls, piano);
+  document.body.append(controls, piano);
+}
+
+document.addEventListener('DOMContentLoaded', initApp);
