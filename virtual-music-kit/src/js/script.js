@@ -45,14 +45,14 @@ function createPianoKey(dataKey) {
   return pianoKey;
 }
 
-function createPiano() {
+function createPiano(dataKeys = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K']) {
   const piano = createElement({
     classes: ['piano'],
   });
-  const listOfKeys = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K'];
-  for (let i = 0; i < 8; i += 1) {
-    piano.append(createPianoKey(listOfKeys[i]));
-  }
+
+  dataKeys.forEach((dataKey) => {
+    piano.append(createPianoKey(dataKey));
+  });
 
   return piano;
 }
