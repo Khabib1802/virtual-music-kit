@@ -47,6 +47,7 @@
     border: 2px solid transparent;
     text-align: center;
     user-select: none;
+    pointer-events: none;
   }
 
   &__input {

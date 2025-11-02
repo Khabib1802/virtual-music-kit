@@ -110,6 +110,7 @@ input:focus, input:hover {
   border: 2px solid transparent;
   text-align: center;
   user-select: none;
+  pointer-events: none;
 }
 .piano__input {
   display: none;
