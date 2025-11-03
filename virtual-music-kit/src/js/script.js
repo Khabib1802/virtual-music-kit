@@ -173,18 +173,6 @@ function addPianoEditEventListener() {
   });
 }
 
-function initApp() {
-  const controls = createControls();
-  const piano = createPiano();
-
-  document.body.append(controls, piano);
-
-  addPianoClickEventListener();
-  addPianoKeysEventListener();
-  addPianoEditEventListener();
-  changeKeyData();
-}
-
 const audioContext = new AudioContext();
 
 function playAudio(objKey) {
@@ -205,7 +193,7 @@ function playAudio(objKey) {
   const oscillator = audioContext.createOscillator();
   const gain = audioContext.createGain();
 
-  oscillator.type = 'triangle';
+  oscillator.type = 'sine';
   oscillator.frequency.value = frequency;
 
   gain.gain.value = 0.2;
@@ -220,4 +208,70 @@ function playAudio(objKey) {
   setTimeout(() => {
     oscillator.stop();
   }, 500);
+}
+
+function playSequence() {
+  const controlsInput = document.querySelector('.controls__input');
+  const controlsPlay = document.querySelector('.controls__play');
+  const pianoKeys = document.querySelectorAll('.piano__key');
+
+  controlsInput.addEventListener('input', () => {
+    const pianoDataKeys = [
+      pianoKeys[0].dataset.key,
+      pianoKeys[1].dataset.key,
+      pianoKeys[2].dataset.key,
+      pianoKeys[3].dataset.key,
+      pianoKeys[4].dataset.key,
+      pianoKeys[5].dataset.key,
+      pianoKeys[6].dataset.key,
+      pianoKeys[7].dataset.key,
+    ];
+    controlsInput.value = controlsInput.value
+      .toUpperCase()
+      .split('')
+      .filter((letter) => pianoDataKeys.includes(letter))
+      .join('');
+  });
+
+  controlsPlay.addEventListener('click', (event) => {
+    const pianoDataKeys = [
+      pianoKeys[0].dataset.key,
+      pianoKeys[1].dataset.key,
+      pianoKeys[2].dataset.key,
+      pianoKeys[3].dataset.key,
+      pianoKeys[4].dataset.key,
+      pianoKeys[5].dataset.key,
+      pianoKeys[6].dataset.key,
+      pianoKeys[7].dataset.key,
+    ];
+    let delay = 0;
+    controlsInput.value.split('').forEach((key) => {
+      for (let i = 0; i < pianoKeys.length; i += 1) {
+        if (pianoKeys[i].dataset.key === key) {
+          setTimeout(() => {
+            pianoKeys[i].classList.add('active');
+            playAudio(key);
+            setTimeout(() => {
+              pianoKeys[i].classList.remove('active');
+            }, 500);
+          }, delay);
+
+          delay += 500;
+        }
+      }
+    });
+  });
+}
+
+function initApp() {
+  const controls = createControls();
+  const piano = createPiano();
+
+  document.body.append(controls, piano);
+
+  addPianoClickEventListener();
+  addPianoKeysEventListener();
+  addPianoEditEventListener();
+  changeKeyData();
+  playSequence();
 }
