@@ -121,6 +121,7 @@ function addPianoClickEventListener() {
     if (isPlayingSequence) {
       return;
     }
+
     if (
       event.target.classList.contains('piano__key') ||
       event.target.classList.contains('piano__edit-area')
@@ -223,8 +224,6 @@ function playSequence() {
   const controlsPlay = document.querySelector('.controls__play');
   const pianoKeys = document.querySelectorAll('.piano__key');
 
-  isPlayingSequence = true;
-
   controlsInput.addEventListener('input', () => {
     const pianoDataKeys = [
       pianoKeys[0].dataset.key,
@@ -244,6 +243,8 @@ function playSequence() {
   });
 
   controlsPlay.addEventListener('click', (event) => {
+    isPlayingSequence = true;
+
     pianoKeys.forEach((pianoKey) => {
       pianoKey.classList.add('disabled');
     });
