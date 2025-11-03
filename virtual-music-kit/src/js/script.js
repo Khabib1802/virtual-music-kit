@@ -247,6 +247,8 @@ function playSequence() {
     pianoKeys.forEach((pianoKey) => {
       pianoKey.classList.add('disabled');
     });
+    controlsInput.classList.add('disabled');
+    controlsPlay.classList.add('disabled');
 
     const pianoDataKeys = [
       pianoKeys[0].dataset.key,
@@ -275,6 +277,8 @@ function playSequence() {
                 pianoKeys.forEach((pianoKey) => {
                   pianoKey.classList.remove('disabled');
                 });
+                controlsInput.classList.remove('disabled');
+                controlsPlay.classList.remove('disabled');
               });
             }
           }, delay);

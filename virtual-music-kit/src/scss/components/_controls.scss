@@ -9,8 +9,15 @@
     color: $color-light;
     border: 2px solid $color-light;
     background-color: inherit;
+
+    &.disabled {
+      background-color: #ccc;
+      pointer-events: none;
+    }
   }
 
-  &__play {
+  &__play.disabled {
+    background-color: #ccc;
+    pointer-events: none;
   }
 }
