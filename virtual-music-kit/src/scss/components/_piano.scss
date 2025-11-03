@@ -23,12 +23,14 @@
       }
     }
 
-    &:active:not(:has(.piano__input:active, .piano__edit:active)) {
+    &:active:not(:has(.piano__input:active, .piano__edit:active)),
+    &.active {
       background-color: $color-accent;
       transform: translateY(4px);
     }
 
-    &:active:not(:has(.piano__input:active, .piano__edit:active)) .piano__edit-area {
+    &:active:not(:has(.piano__input:active, .piano__edit:active)) .piano__edit-area,
+    &.active .piano__edit-area {
       transform: translateY(-4px);
     }
   }
@@ -46,6 +48,7 @@
     padding: $spacing-middle;
     border: 2px solid transparent;
     text-align: center;
+    text-transform: uppercase;
     user-select: none;
     pointer-events: none;
   }
@@ -56,9 +59,9 @@
 
   &__label,
   &__input {
-    position: absolute;
-    top: 0;
-    left: 0;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
     width: 100%;
     margin-top: $spacing-middle;
     padding-top: $spacing-large;
@@ -121,7 +124,28 @@
     }
   }
 
-  &__input.edit-mode {
+  &__edit-area.edit-mode &__input {
     display: block;
+  }
+
+  &__edit-area.edit-mode &__label {
+    display: none;
+  }
+
+  &__edit-area.error {
+    &::after {
+      content: "Use only latin letters and do not duplicate keys";
+      position: absolute;
+      bottom: -40px;
+      width: 100%;
+      font-size: 14px;
+      color: red;
+      text-align: center;
+    }
+  }
+
+  &__edit-area.error &__input {
+    position: relative;
+    border-color: red;
   }
 }

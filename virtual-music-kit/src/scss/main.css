@@ -90,11 +90,11 @@ input:focus, input:hover {
     background-color: rgb(167.1513944223, 208.5378486056, 244.8486055777);
   }
 }
-.piano__key:active:not(:has(.piano__input:active, .piano__edit:active)) {
+.piano__key:active:not(:has(.piano__input:active, .piano__edit:active)), .piano__key.active {
   background-color: #1e88e5;
   transform: translateY(4px);
 }
-.piano__key:active:not(:has(.piano__input:active, .piano__edit:active)) .piano__edit-area {
+.piano__key:active:not(:has(.piano__input:active, .piano__edit:active)) .piano__edit-area, .piano__key.active .piano__edit-area {
   transform: translateY(-4px);
 }
 .piano__edit-area {
@@ -109,6 +109,7 @@ input:focus, input:hover {
   padding: 20px;
   border: 2px solid transparent;
   text-align: center;
+  text-transform: uppercase;
   user-select: none;
   pointer-events: none;
 }
@@ -116,9 +117,6 @@ input:focus, input:hover {
   display: none;
 }
 .piano__label, .piano__input {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   margin-top: 20px;
   padding-top: 30px;
@@ -182,8 +180,24 @@ input:focus, input:hover {
 .piano__edit:active {
   color: rgb(16.2629482072, 82.5657370518, 140.7370517928);
 }
-.piano__input.edit-mode {
+.piano__edit-area.edit-mode .piano__input {
   display: block;
+}
+.piano__edit-area.edit-mode .piano__label {
+  display: none;
+}
+.piano__edit-area.error::after {
+  content: "Use only latin letters and do not duplicate keys";
+  position: absolute;
+  bottom: -40px;
+  width: 100%;
+  font-size: 14px;
+  color: red;
+  text-align: center;
+}
+.piano__edit-area.error .piano__input {
+  position: relative;
+  border-color: red;
 }
 
 /*# sourceMappingURL=main.css.map */
