@@ -148,4 +148,9 @@
     position: relative;
     border-color: red;
   }
+
+  &__key.disabled {
+    background-color: #ccc;
+    pointer-events: none;
+  }
 }

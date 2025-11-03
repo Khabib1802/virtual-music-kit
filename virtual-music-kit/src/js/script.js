@@ -88,6 +88,9 @@ function addPianoKeysEventListener() {
   let isPianoKeyActive = false;
 
   document.addEventListener('keydown', (event) => {
+    if (isPlayingSequence) {
+      return;
+    }
     if (event.target.tagName === 'INPUT') {
       return;
     }
@@ -115,6 +118,9 @@ function addPianoKeysEventListener() {
 
 function addPianoClickEventListener() {
   document.addEventListener('mousedown', (event) => {
+    if (isPlayingSequence) {
+      return;
+    }
     if (
       event.target.classList.contains('piano__key') ||
       event.target.classList.contains('piano__edit-area')
@@ -210,10 +216,14 @@ function playAudio(objKey) {
   }, 500);
 }
 
+let isPlayingSequence;
+
 function playSequence() {
   const controlsInput = document.querySelector('.controls__input');
   const controlsPlay = document.querySelector('.controls__play');
   const pianoKeys = document.querySelectorAll('.piano__key');
+
+  isPlayingSequence = true;
 
   controlsInput.addEventListener('input', () => {
     const pianoDataKeys = [
@@ -234,6 +244,10 @@ function playSequence() {
   });
 
   controlsPlay.addEventListener('click', (event) => {
+    pianoKeys.forEach((pianoKey) => {
+      pianoKey.classList.add('disabled');
+    });
+
     const pianoDataKeys = [
       pianoKeys[0].dataset.key,
       pianoKeys[1].dataset.key,
@@ -245,7 +259,7 @@ function playSequence() {
       pianoKeys[7].dataset.key,
     ];
     let delay = 0;
-    controlsInput.value.split('').forEach((key) => {
+    controlsInput.value.split('').forEach((key, index, arr) => {
       for (let i = 0; i < pianoKeys.length; i += 1) {
         if (pianoKeys[i].dataset.key === key) {
           setTimeout(() => {
@@ -254,6 +268,15 @@ function playSequence() {
             setTimeout(() => {
               pianoKeys[i].classList.remove('active');
             }, 500);
+
+            if (index === arr.length - 1) {
+              setTimeout(() => {
+                isPlayingSequence = false;
+                pianoKeys.forEach((pianoKey) => {
+                  pianoKey.classList.remove('disabled');
+                });
+              });
+            }
           }, delay);
 
           delay += 500;

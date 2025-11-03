@@ -199,5 +199,9 @@ input:focus, input:hover {
   position: relative;
   border-color: red;
 }
+.piano__key.disabled {
+  background-color: #ccc;
+  pointer-events: none;
+}
 
 /*# sourceMappingURL=main.css.map */
